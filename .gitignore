@@ -1,3 +1,5 @@
 .env
 openrouter.ai
 __pycache__/
+frontend/node_modules/
+frontend/.next/
