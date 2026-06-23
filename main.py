@@ -84,7 +84,7 @@ system_prompt = """
 4. ห้ามใช้สัญลักษณ์ Markdown เช่น ** หรือ __ ในการเน้นคำเด็ดขาด ให้พิมพ์เป็นข้อความธรรมดา
 """
 
-# เก็บประวัติการคุย (ในแอปจริงควรเก็บลง Database แยกตาม User)
+# เก็บประวัติการคุย
 chat_history = [
     {"role": "system", "content": system_prompt}
 ]
@@ -98,8 +98,7 @@ def chat_with_bot(request: ChatRequest):
         # 1. เอาคำถามใหม่ต่อท้ายประวัติแชท
         chat_history.append({"role": "user", "content": request.message})
 
-        # 2. ส่งไปถาม OpenRouter (คุณสามารถเปลี่ยนชื่อ Model ตรงนี้ได้ตามต้องการ)
-        # ตัวอย่างโมเดลฟรี: google/gemini-2.0-flash-lite-preview-02-05:free
+        # 2. ส่งไปถาม OpenRouter
         response = client.chat.completions.create(
             model="openai/gpt-oss-120b", 
             messages=chat_history,
